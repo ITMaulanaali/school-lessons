@@ -24,10 +24,9 @@ void Himpunan::himpunanBagian(){
     int wadah = 0;
     int index = 0;
 
-    int n = arryDuaDimensi.size();
-
-    for(int baris=0; baris<n; baris++){
-        wadah = arryDuaDimensi[baris].size();
+    for(int baris=0; !arryDuaDimensi.empty(); baris++){
+        wadah = arryDuaDimensi[0].size();
+        index = 0;
         for(int barisDua=0; barisDua<arryDuaDimensi.size(); barisDua++){
             if(wadah > arryDuaDimensi[barisDua].size()){
                 wadah = arryDuaDimensi[barisDua].size();
@@ -44,41 +43,45 @@ void Himpunan::himpunanBagian(){
     }
 
     std::vector<bool> hasilPerbandingan;
-    for(int i=1; i<arryUrut.size(); i++){
-        for(int j=0; j<arryUrut[i-1].size(); j++){
-            hasilPerbandingan.push_back(false);
+    for(int i=0; i<arryUrut.size(); i++){
+        for(int j=0; j<arryUrut.size(); j++){
+            if(i==j) continue;
 
             for(int k=0; k<arryUrut[i].size(); k++){
-                if(arryUrut[i-1][j] == arryUrut[i][k]){
-                    hasilPerbandingan[j] = true;
+                hasilPerbandingan.push_back(false);
+                for(int l=0; l<arryUrut[j].size(); l++){
+                    if(arryUrut[i][k] == arryUrut[j][l]){
+                        hasilPerbandingan[k] = true;
+                        break;
+                    }
+                }
+            }
+        
+
+            //mengecek hasilPerbandingan
+            bool perbandinganSamaSemua = true;
+            for(int j=0; j<hasilPerbandingan.size(); j++){
+                if(!hasilPerbandingan[j]){
+                    perbandinganSamaSemua = false;
                     break;
                 }
             }
-        }
 
-        //mengecek hasilPerbandingan
-        bool perbandinganSamaSemua = true;
-        for(int j=0; j<hasilPerbandingan.size(); j++){
-            if(!hasilPerbandingan[j]){
-                perbandinganSamaSemua = false;
-                break;
-            }
-        }
+            if(perbandinganSamaSemua){
+                std::cout << "Merupakan himpunan bagian" << std::endl;
 
-        if(perbandinganSamaSemua){
-            std::cout << "Merupakan himpunan bagian" << std::endl;
-
-            for(int k=0; k<arryUrut[i-1].size(); k++){
-                std::cout << arryUrut[i-1][k];
+                for(int k=0; k<arryUrut[i].size(); k++){
+                    std::cout << arryUrut[i][k];
+                }
+                std::cout << std::endl;
+                for(int k=0; k<arryUrut[j].size(); k++){
+                    std::cout << arryUrut[j][k];
+                }
+                std::cout << std::endl;
+                std::cout << "-------" << std::endl;
             }
-            std::cout << std::endl;
-            for(int k=0; k<arryUrut[i].size(); k++){
-                std::cout << arryUrut[i][k];
-            }
-            std::cout << std::endl;
-            std::cout << "-------" << std::endl;
+            hasilPerbandingan.clear();
         }
-        hasilPerbandingan.clear();
     }
 }
 
