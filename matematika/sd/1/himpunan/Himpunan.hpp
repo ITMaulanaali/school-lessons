@@ -15,6 +15,7 @@ class Himpunan {
         void inputCollection(T bilPertama, Args... data);
 
         void himpunanBagian();
+        void himpunanIrisan();
         void cetak() const;
 };
 

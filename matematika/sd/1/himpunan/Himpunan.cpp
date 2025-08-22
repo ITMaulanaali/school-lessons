@@ -20,26 +20,27 @@ void Himpunan::inputCollection(T bilPertama, Args... data) {
 }
 
 void Himpunan::himpunanBagian(){
+    std::vector<std::vector<int>> cloneArryDuaDimensi = this->arryDuaDimensi;
     std::vector<std::vector<int>> arryUrut;
     int wadah = 0;
     int index = 0;
 
-    for(int baris=0; !arryDuaDimensi.empty(); baris++){
-        wadah = arryDuaDimensi[0].size();
+    for(int baris=0; !cloneArryDuaDimensi.empty(); baris++){
+        wadah = cloneArryDuaDimensi[0].size();
         index = 0;
-        for(int barisDua=0; barisDua<arryDuaDimensi.size(); barisDua++){
-            if(wadah > arryDuaDimensi[barisDua].size()){
-                wadah = arryDuaDimensi[barisDua].size();
+        for(int barisDua=0; barisDua<cloneArryDuaDimensi.size(); barisDua++){
+            if(wadah > cloneArryDuaDimensi[barisDua].size()){
+                wadah = cloneArryDuaDimensi[barisDua].size();
                 index = barisDua;
             }
         }
 
         //masukan himpunan ke index terdepan
         arryUrut.push_back({});
-        for(int k=0; k < arryDuaDimensi[index].size(); k++ ){
-            arryUrut.back().push_back(arryDuaDimensi[index][k]);
+        for(int k=0; k < cloneArryDuaDimensi[index].size(); k++ ){
+            arryUrut.back().push_back(cloneArryDuaDimensi[index][k]);
         }
-        arryDuaDimensi.erase(arryDuaDimensi.begin() + index);
+        cloneArryDuaDimensi.erase(cloneArryDuaDimensi.begin() + index);
     }
 
     std::vector<bool> hasilPerbandingan;
@@ -81,6 +82,51 @@ void Himpunan::himpunanBagian(){
                 std::cout << "-------" << std::endl;
             }
             hasilPerbandingan.clear();
+        }
+    }
+}
+
+void Himpunan::himpunanIrisan(){
+    std::vector<std::vector<int>> cloneArryDuaDimensi = this->arryDuaDimensi;
+    std::vector<std::vector<int>> arryIrisan;
+
+    int duplikatValue;
+    for(int i=0; i<cloneArryDuaDimensi.size(); i++){
+        for(int j=0; j<cloneArryDuaDimensi[i].size(); j++){
+            duplikatValue = cloneArryDuaDimensi[i][j];
+            for(int k=j+1; k<cloneArryDuaDimensi[i].size(); k++){
+                if(duplikatValue == cloneArryDuaDimensi[i][k]){
+                    cloneArryDuaDimensi[i].erase(cloneArryDuaDimensi[i].begin() + k);
+                    k--;
+                }
+            }
+        }
+
+        arryIrisan.push_back(cloneArryDuaDimensi[i]);
+    }
+
+    for(int i=0; i<arryIrisan.size(); i++){
+        for(int j=i+1; j<arryIrisan.size(); j++){
+            for(int x:arryIrisan[i]){
+                std::cout << x << " ";
+            }
+            std::cout << std::endl;
+            for(int x:arryIrisan[j]){
+                std::cout << x << " ";
+            }
+            std::cout << std::endl;
+            std::cout << "Memiliki himpunan irisan:" << std::endl;
+            //mencari himpunan irisan
+            for(int k=0; k<arryIrisan[i].size(); k++){
+                for(int l=0; l<arryIrisan[j].size(); l++){
+                    if(arryIrisan[i][k] == arryIrisan[j][l]){
+                        std::cout << arryIrisan[i][k];
+                        break;
+                    }
+                }
+            }
+            std::cout << std::endl;
+            std::cout << "--------" << std::endl;
         }
     }
 }
