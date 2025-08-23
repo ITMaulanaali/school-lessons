@@ -89,6 +89,7 @@ void Himpunan::himpunanBagian(){
 void Himpunan::himpunanIrisan(){
     std::vector<std::vector<int>> cloneArryDuaDimensi = this->arryDuaDimensi;
     std::vector<std::vector<int>> arryIrisan;
+    int irisan=0;
 
     int duplikatValue;
     for(int i=0; i<cloneArryDuaDimensi.size(); i++){
@@ -120,11 +121,22 @@ void Himpunan::himpunanIrisan(){
             for(int k=0; k<arryIrisan[i].size(); k++){
                 for(int l=0; l<arryIrisan[j].size(); l++){
                     if(arryIrisan[i][k] == arryIrisan[j][l]){
-                        std::cout << arryIrisan[i][k];
-                        break;
+                        irisan++;
+                        // std::cout << arryIrisan[i][k];
+                        // break;
+                    }
+                }
+
+                for(int l=0; l<arryIrisan[j].size(); l++){
+                    if(arryIrisan[i][k] == arryIrisan[j][l]){
+                        if(irisan < arryIrisan[i].size() && irisan < arryIrisan[j].size()){
+                            std::cout << arryIrisan[i][k] << " ";
+                            break;
+                        }
                     }
                 }
             }
+            irisan=0;
             std::cout << std::endl;
             std::cout << "--------" << std::endl;
         }
