@@ -195,7 +195,55 @@ void Himpunan::himpunanGabungan(){
             indexGabungan++;
         }
     }
-    // cetak(arryGabungan);
+}
+
+void Himpunan::himpunanKomplemen(int x){
+    std::vector<std::vector<int>> cloneArryDuaDimensi = this->arryDuaDimensi;
+    std::vector<int> arrySatuD;
+    std::vector<int> arrySatuDKomplemen;
+    /*
+        1. simpan tiap datum baris index x atau komplemen x pada arraySatuD
+        2. loop atau tampilkan semua data kecuali data yang memiliki nilai sama dengan yang ada di x (hapus)
+    */
+
+    //menyimpan nilai bukan kompelemen dari x to arrySatuD
+    for(int i=0; i<cloneArryDuaDimensi.size(); i++){
+        if(i!=x-1) continue;
+        for(int j=0; j<cloneArryDuaDimensi[i].size(); j++){
+            arrySatuD.push_back(cloneArryDuaDimensi[i][j]);
+        }
+    }
+
+    //simpan komplemen dari x ke arrySatuDKomplemen
+    for(int i=0; i<cloneArryDuaDimensi.size(); i++){
+        if(i==x-1) continue;
+        for(int j=0; j<cloneArryDuaDimensi[i].size(); j++){
+            arrySatuDKomplemen.push_back(cloneArryDuaDimensi[i][j]);
+        }
+    }
+
+    //cek nilai yang sama di arraySatuD dengan ArraySatuDKompelen, Jika sama hapus
+    for(int i=0; i<arrySatuD.size(); i++){
+        for(int j=0; j<arrySatuDKomplemen.size(); j++){
+            if(arrySatuD[i] == arrySatuDKomplemen[j]){
+                arrySatuDKomplemen.erase(arrySatuDKomplemen.begin() + j);
+                j--;
+            }
+        }
+    }
+
+    //hapus nilai yang sama di arrySatuKomplemen itu sendiri
+    for(int i=0; i<arrySatuDKomplemen.size(); i++){
+        for(int j=i+1; j<arrySatuDKomplemen.size(); j++){
+            if(arrySatuDKomplemen[i] == arrySatuDKomplemen[j]){
+                arrySatuDKomplemen.erase(arrySatuDKomplemen.begin() + j);
+                j--;
+            }
+        }
+    }
+
+    std::cout << "Kompelemen dari baris: "  << x << " adalah: " << std::endl;
+    cetak(arrySatuDKomplemen);
 }
 
 void Himpunan::cetak(std::vector<std::vector<int>> arry) const {
@@ -207,4 +255,13 @@ void Himpunan::cetak(std::vector<std::vector<int>> arry) const {
         std::cout << '\n';
     }
 }
+
+void Himpunan::cetak(std::vector<int> arr) const {
+    std::cout << "Himpunan: ";
+    for (int nilai : arr) {
+        std::cout << nilai << ' ';
+    }
+    std::cout << '\n';
+}
+
 

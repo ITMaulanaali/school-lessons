@@ -17,7 +17,9 @@ class Himpunan {
         void himpunanBagian();
         void himpunanIrisan();
         void himpunanGabungan();
+        void himpunanKomplemen(int x);
         void cetak(std::vector<std::vector<int>> arry) const;
+        void cetak(std::vector<int> arry) const;
 };
 
 #endif
