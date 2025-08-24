@@ -143,12 +143,68 @@ void Himpunan::himpunanIrisan(){
     }
 }
 
-void Himpunan::cetak() const {
-    for (size_t i = 0; i < arryDuaDimensi.size(); ++i) {
+void Himpunan::himpunanGabungan(){
+    std::vector<std::vector<int>> cloneArryDuaDimensi = this->arryDuaDimensi;
+    std::vector<std::vector<int>> arryGabungan;
+    int indexGabungan=0;
+
+    for(int i=0; i<cloneArryDuaDimensi.size(); i++){
+        for(int j=i+1; j<cloneArryDuaDimensi.size(); j++){
+            arryGabungan.push_back({});
+            indexGabungan = arryGabungan.size() - 1;
+            for(int k=0; k<cloneArryDuaDimensi[i].size(); k++){
+                arryGabungan[indexGabungan].push_back(cloneArryDuaDimensi[i][k]);
+            }
+            for(int k=0; k<cloneArryDuaDimensi[j].size(); k++){
+                arryGabungan[indexGabungan].push_back(cloneArryDuaDimensi[j][k]);
+            }
+        }
+    }
+
+    //mengatur nilai dalam satu baris arry tidak ada yang sama
+    for(int i=0; i<arryGabungan.size(); i++){
+        for(int j=0; j<arryGabungan[i].size(); j++){
+            for(int k=j+1; k<arryGabungan[i].size(); k++){
+                if(arryGabungan[i][j] == arryGabungan[i][k]){
+                    arryGabungan[i].erase(arryGabungan[i].begin() + k);
+                    k--;
+                }
+            }
+        }
+    }
+
+    //menampilkan himpunan bagian
+    indexGabungan=0;
+    for(int i=0; i<cloneArryDuaDimensi.size(); i++){
+        for(int j=i+1; j<cloneArryDuaDimensi.size(); j++){
+            
+            for(int k=0; k<cloneArryDuaDimensi[i].size(); k++){
+                std::cout << cloneArryDuaDimensi[i][k] << " ";
+            }
+            std::cout << std::endl;
+            for(int k=0; k<cloneArryDuaDimensi[j].size(); k++){
+                std::cout << cloneArryDuaDimensi[j][k] << " ";
+            }
+            std::cout << std::endl;
+            std::cout << "--------" << std::endl;
+            
+            for(int k=0; k<arryGabungan[indexGabungan].size(); k++){
+                std::cout << arryGabungan[indexGabungan][k] << " ";
+            }
+            std::cout << std::endl << std::endl;
+            indexGabungan++;
+        }
+    }
+    // cetak(arryGabungan);
+}
+
+void Himpunan::cetak(std::vector<std::vector<int>> arry) const {
+    for (size_t i = 0; i < arry.size(); ++i) {
         std::cout << "Himpunan ke-" << i << ": ";
-        for (int nilai : arryDuaDimensi[i]) {
+        for (int nilai : arry[i]) {
             std::cout << nilai << ' ';
         }
         std::cout << '\n';
     }
 }
+
