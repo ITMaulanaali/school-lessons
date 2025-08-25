@@ -256,6 +256,18 @@ void Himpunan::cetak(std::vector<std::vector<int>> arry) const {
     }
 }
 
+void Himpunan::totalSemesta(){
+    int total=0;
+
+    for(int i=0; i<this->arryDuaDimensi.size(); i++){
+        for(int j=0; j<this->arryDuaDimensi[i].size(); j++){
+            total++;
+        }
+    }
+
+    std::cout << "Total himpunan semesta: " << total << std::endl;
+}
+
 void Himpunan::cetak(std::vector<int> arr) const {
     std::cout << "Himpunan: ";
     for (int nilai : arr) {
