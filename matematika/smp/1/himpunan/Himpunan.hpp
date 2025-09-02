@@ -1,5 +1,5 @@
-#ifndef __Himpunan
-#define __Himpunan
+#ifndef __Himpunan_HPP
+#define __Himpunan_HPP
 
 #include <vector>
 #include <iostream>
@@ -18,6 +18,7 @@ class Himpunan {
         void himpunanIrisan();
         void himpunanGabungan();
         void himpunanKomplemen(int x);
+        void himpunanKuasa(int x);
         void totalSemesta();
         void cetak(std::vector<std::vector<int>> arry) const;
         void cetak(std::vector<int> arry) const;

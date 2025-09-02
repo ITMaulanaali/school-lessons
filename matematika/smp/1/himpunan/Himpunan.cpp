@@ -256,6 +256,26 @@ void Himpunan::cetak(std::vector<std::vector<int>> arry) const {
     }
 }
 
+void Himpunan::himpunanKuasa(int x){
+    x = x-1;
+    int nKolom = 0;
+    int hasilKuasa = 2;
+
+    std::cout << "Himpunan kuasa dari: ";
+    for(int i=0; i<this->arryDuaDimensi[x].size(); i++){
+        std::cout << this->arryDuaDimensi[x][i] << " ";
+        nKolom++;
+    }
+    std::cout << std::endl;
+
+    for(int i=1; i<nKolom; i++){
+        hasilKuasa = 2*hasilKuasa;
+    }
+
+    std::cout << hasilKuasa << std::endl;
+
+}
+
 void Himpunan::totalSemesta(){
     int total=0;
 
