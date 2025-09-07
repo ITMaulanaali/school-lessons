@@ -1,27 +1,6 @@
-#include <vector>
-#include <iostream>
-#include <string>
-#include <sstream>
+#include "Aritmatika.hpp"
 
-/*
-sudah memenuhi
-- bilangan identitas
-- asosiatif
-- komutatif
-*/
-int tambah(int bil1, int bil2){
-    return bil1 + bil2;
-}
-
-int kurang(int bil1, int bil2){
-    return bil1 - bil2;
-}
-
-int kali(int bil1, int bil2){
-    return bil1 * bil2;
-}
-
-double pangkat(int bilangan, int pangkat){
+double Aritmatika::pangkat(int bilangan, int pangkat){
     double hasil = bilangan;
     for(double i=1; i<pangkat; i++){
         hasil = bilangan * hasil;
@@ -29,7 +8,7 @@ double pangkat(int bilangan, int pangkat){
     return hasil;
 }
 
-std::string prima(int bilPrima){
+std::string Aritmatika::prima(int bilPrima){
     std::string hasil = "";
 
     if(bilPrima == 0){
@@ -121,7 +100,7 @@ std::string prima(int bilPrima){
     return hasil;
 }
 
-std::string fpb(std::string primaSatu, std::string primaDua){
+std::string Aritmatika::fpb(std::string primaSatu, std::string primaDua){
     std::vector<int> komparasiSatu;
     std::vector<int> komparasiDua;
     std::vector<int> hasilFpb;
@@ -156,7 +135,7 @@ std::string fpb(std::string primaSatu, std::string primaDua){
     return allResults;
 }
 
-int kpk(int bil1, int bil2){
+int Aritmatika::kpk(int bil1, int bil2){
     std::vector<int> kelipatanBil1;
     std::vector<int> kelipatanBil2;
     kelipatanBil1.push_back(bil1);
@@ -182,7 +161,7 @@ int kpk(int bil1, int bil2){
     return hasilKpk;
 }
 
-float sederhanakanPecahan(int pembilang, int penyebut){
+float Aritmatika::sederhanakanPecahan(int pembilang, int penyebut){
     std::string stringNilaiFpb = fpb(prima(pembilang),prima(penyebut));
     int nilaiFpb = 1;
     float hasilPecahanDesimal;
