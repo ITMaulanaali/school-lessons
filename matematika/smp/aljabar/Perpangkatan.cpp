@@ -1,5 +1,6 @@
+#include "Perpangkatan.hpp"
 
-long pangkatAljabar(int a, int b, int pangkat){
+long Perpangkatan::pangkat(int a, int b, int pangkat){
     long hasil;
 
     if(pangkat == 2){
